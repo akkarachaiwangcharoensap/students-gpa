@@ -98,7 +98,7 @@ public class StudentsController {
         return "redirect:/students";
     }
 
-    @DeleteMapping("/students/{id}")
+    @DeleteMapping("/students/{id}/delete")
     public String deleteStudent(@PathVariable("id") Integer id, HttpServletResponse response) {
         Optional<Student> studentOptional = studentRepository.findById(id);
 
