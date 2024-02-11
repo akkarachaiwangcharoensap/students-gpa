@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Student</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-8">
+    <div class="max-w-md mx-auto bg-white rounded-sm p-6 mt-6">
+        <h1 class="text-xl mb-4">Edit Student</h1>
+
+        <form th:action="@{/students/{id}/update(id=${id})}" th:object="${student}" method="post">
+            <div class="mb-4">
+                <label for="name" class="block text-md font-medium text-gray-700">Student Name</label>
+                <input type="text" id="name" name="name" th:field="*{name}" class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm border-gray-300">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-red-500"></span>
+            </div>
+            <div class="mb-4">
+                <label for="gpa" class="block text-md font-medium text-gray-700">GPA</label>
+                <input type="text" id="gpa" name="gpa" th:field="*{gpa}" class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm border-gray-300">
+                <span th:if="${#fields.hasErrors('gpa')}" th:errors="*{gpa}" class="text-red-500"></span>
+            </div>
+            <div class="mb-4">
+                <label for="enrollmentDate" class="block text-md font-medium text-gray-700">Enrollment Date</label>
+                <input type="date" id="enrollmentDate" name="enrollmentDate" th:field="*{enrollmentDate}" class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm border-gray-300">
+            </div>
+            <div class="mt-6">
+                <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+                    Update
+                </button>
+
+                <button type="button" onclick="confirmDelete()" class="w-full bg-red-500 text-white mt-2 py-2 px-4 rounded hover:bg-red-700">
+                    Delete
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function confirmDelete()
+        {
+            if (confirm("Are you sure you want to delete this student?"))
+            {
+                // Perform delete operation or submit form with DELETE method
+                document.getElementById("deleteForm").submit();
+            }
+        }
+    </script>
+</body>
+
+</html>
