@@ -19,17 +19,31 @@ import com.example.demo.models.StudentRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * Controller class for handling student-related operations.
+ */
 @Controller
 public class StudentsController {
 
     @Autowired
     private StudentRepository studentRepository;
 
+    /**
+     * Redirects to the students page.
+     *
+     * @return RedirectView object for redirecting to the students page
+     */
     @GetMapping("/")
     public RedirectView process() {
         return new RedirectView("students");
     }
 
+    /**
+     * Displays all students.
+     *
+     * @param model Model object for managing attributes
+     * @return String representing the view name for displaying all students
+     */
     @GetMapping("/students")
     public String showAllStudents(Model model) {
         List<Student> students = this.studentRepository.findAll();
@@ -37,12 +51,25 @@ public class StudentsController {
         return "students/all";
     }
 
+    /**
+     * Displays the form for creating a new student.
+     *
+     * @param model Model object for managing attributes
+     * @return String representing the view name for creating a new student
+     */
     @GetMapping("/students/create")
     public String createStudent(Model model) {
         model.addAttribute("student", new Student());
         return "students/create";
     }
 
+    /**
+     * Creates a new student.
+     *
+     * @param student  Student object representing the new student
+     * @param response HttpServletResponse object for managing HTTP response
+     * @return String representing the redirection URL after creating the student
+     */
     @PostMapping("/students/create")
     public String createStudent(@ModelAttribute Student student, HttpServletResponse response) {
 
@@ -62,6 +89,13 @@ public class StudentsController {
         return "redirect:/students";
     }
 
+    /**
+     * Displays the form for editing a student.
+     *
+     * @param id    Integer representing the ID of the student to edit
+     * @param model Model object for managing attributes
+     * @return String representing the view name for editing a student
+     */
     @GetMapping("/students/{id}/edit")
     public String editStudent(@PathVariable("id") Integer id, Model model) {
 
@@ -74,6 +108,14 @@ public class StudentsController {
         return "students/edit";
     }
 
+    /**
+     * Updates an existing student.
+     *
+     * @param id       Integer representing the ID of the student to update
+     * @param student  Student object representing the updated student information
+     * @param response HttpServletResponse object for managing HTTP response
+     * @return String representing the redirection URL after updating the student
+     */
     @PostMapping("/students/{id}/update")
     public String updateStudent(@PathVariable("id") Integer id, @ModelAttribute Student student,
             HttpServletResponse response) {
@@ -98,6 +140,13 @@ public class StudentsController {
         return "redirect:/students";
     }
 
+    /**
+     * Deletes a student.
+     *
+     * @param id       Integer representing the ID of the student to delete
+     * @param response HttpServletResponse object for managing HTTP response
+     * @return String representing the redirection URL after deleting the student
+     */
     @DeleteMapping("/students/{id}/delete")
     public String deleteStudent(@PathVariable("id") Integer id, HttpServletResponse response) {
         Optional<Student> studentOptional = studentRepository.findById(id);
