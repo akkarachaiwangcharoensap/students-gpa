@@ -32,14 +32,14 @@
                 <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
                     Update
                 </button>
+
+                <!-- <button type="button" class="w-full bg-red-500 text-white mt-2 py-2 px-4 rounded hover:bg-red-700">
+                    Delete
+                </button> -->
             </div>
         </form>
 
-        <form id="deleteForm" th:action="@{/students/{id}/delete(id=${id})}" th:method="delete">
-            <!-- Hidden input to send a DELETE request -->
-            <!-- <input type="hidden" name="_method" value="delete"> -->
-
-            <!-- Delete button -->
+        <form th:action="@{/students/{id}/delete(id=${id})}" th:method="DELETE">
             <button type="submit" class="w-full bg-red-500 text-white mt-2 py-2 px-4 rounded hover:bg-red-700">
                 Delete
             </button>
