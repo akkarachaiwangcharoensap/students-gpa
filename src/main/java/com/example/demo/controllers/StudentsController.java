@@ -76,6 +76,7 @@ public class StudentsController {
         Student newStudent = new Student();
         newStudent.setName(student.getName());
         newStudent.setGpa(student.getGpa());
+        newStudent.setAttending(student.isAttending());
         newStudent.setEnrollmentDate(student.getEnrollmentDate());
 
         // Set created_at and updated_at timestamps
@@ -128,6 +129,7 @@ public class StudentsController {
         Student existingStudent = studentOptional.get();
         existingStudent.setName(student.getName());
         existingStudent.setGpa(student.getGpa());
+        existingStudent.setAttending(student.isAttending());
         existingStudent.setEnrollmentDate(student.getEnrollmentDate());
 
         // Set updated_at timestamp

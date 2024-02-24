@@ -28,6 +28,10 @@
                 <label for="enrollmentDate" class="block text-md font-medium text-gray-700">Enrollment Date</label>
                 <input type="date" id="enrollmentDate" name="enrollmentDate" th:field="*{enrollmentDate}" class="mt-1 focus:ring-gray-500 focus:border-gray-500 block w-full shadow-sm border-gray-300">
             </div>
+            <div class="mb-4">
+                <span class="text-gray-700">Is Attending?</span>
+                <input type="checkbox" id="attending" name="attending" th:field="*{attending}" class="form-checkbox text-indigo-600 h-5 w-5 ml-2" style="vertical-align: sub" />
+            </div>
             <div class="mt-6">
                 <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">Add
                 </button>

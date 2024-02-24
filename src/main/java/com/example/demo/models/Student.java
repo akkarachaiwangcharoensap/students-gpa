@@ -14,6 +14,7 @@ public class Student {
     private String name;
     private Double gpa;
     private LocalDate enrollmentDate;
+    private boolean attending;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -70,5 +71,13 @@ public class Student {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public boolean isAttending() {
+        return attending;
+    }
+
+    public void setAttending(boolean attending) {
+        this.attending = attending;
     }
 }
